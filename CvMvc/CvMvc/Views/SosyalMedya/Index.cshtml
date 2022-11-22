@@ -1,0 +1,65 @@
+﻿@using CvMvc.Models.Entity
+
+@model List<TblSosyalMedya>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<br />
+<h2>Sosyal Medya Hesaplarım</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Ad</th>
+        <th>Link</th>
+        <th>İkon</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Ad</td>
+            <td>@item.Link</td>
+            <td>@item.ikon</td>
+            <td><a href="/SosyalMedya/Sil/@item.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/SosyalMedya/Getir/@item.ID" class="btn btn-warning">Düzenle</a></td>
+
+
+        </tr>
+    }
+</table>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#modal1">Yeni Sosyal Medya Ekle</button>
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Sosyal Medya Ekleme</h2>
+
+            </div>
+            <form method="post" action="/SosyalMedya/Ekle">
+                <div class="modal-body">
+                    <label>Sosyal Medya İsmi</label>
+                    <input type="text" name="Ad" class="form-control" />
+                    <br />
+                    <label>Sosyal Medya Linki</label>
+                    <input type="text" name="Link" class="form-control" />
+                    <br />
+                    <label>Sosyal Medya İkon</label>
+                    <input type="text" name="ikon" class="form-control" />
+                    <br />
+                    <button class="btn btn-info">Kaydet</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+

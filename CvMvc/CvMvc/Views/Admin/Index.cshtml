@@ -1,0 +1,52 @@
+﻿@using CvMvc.Models.Entity
+@model List<TblAdmin>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Adminler</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Kullanıcı Adı</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.KullaniciAdi</td>
+            <td><a href="/Admin/Sil/@item.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Admin/Getir/@item.ID" class="btn btn-warning">Düzenle</a></td>
+
+
+        </tr>
+    }
+</table>
+<button class="btn btn-primary" data-toggle="modal" data-target="#modal1">Yeni Admin Ekle</button>
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Admin Ekleme</h2>
+
+            </div>
+            <form method="post" action="/Admin/Ekle">
+                <div class="modal-body">
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" name="KullaniciAdi" class="form-control" />
+                    <br />
+                    <label>Sifre</label>
+                    <input type="text" name="Sifre" class="form-control" />
+                    <br />
+                    <button class="btn btn-info">Kaydet</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
